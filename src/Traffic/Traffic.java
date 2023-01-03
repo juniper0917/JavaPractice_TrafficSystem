@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class Traffic {
     private String TrafficLight;
+    private Wait time = new Wait();
 
     public void system(Car car){
         Scanner sc = new Scanner(System.in);
-        Wait time = new Wait();
         Boolean notFirst = false;
         while(true){
             System.out.println("[옵션 선택]");
@@ -19,27 +19,34 @@ public class Traffic {
             System.out.println("3. 주행종료");
             int lightOption = sc.nextInt();
             if(lightOption==1){
-                if(notFirst && getTraffic()!="RED"){
+                if(notFirst && getTraffic()!="XOO"){
+                    showChangeTraffic();
+                    setLight("RED");
                     System.out.println("    "+ getTraffic() + "    ");
                     time.Wait(1000);
-                    setLight("YELLOW");
-                    System.out.println("");
-                    System.out.println("    "+ getTraffic() + "    ");
-                    System.out.println("");
-                    time.Wait(1000);
+                    System.out.println("\n");
+                    System.out.println("    "+getTraffic()+"              속력");
+                    for(int i=car.getCurSpeed(); i >= 0 ; i-=car.getSpeedPerUnit())
+                    {
+                        car.setCurSpeed(i);
+                        if(i<0){
+                            car.setCurSpeed(0);
+                        }
+                        System.out.println("|    |    |          "+ car.getCurSpeed());
+                        time.Wait(200);
+                    }
+                    continue;
                 }
                 setLight("RED");
                 car.setCurSpeed(0);
                 System.out.println("    "+getTraffic()+"             속력");
                 System.out.println("|    |    |          "+ car.getCurSpeed());
             } else if (lightOption==2) {
-                if(notFirst&& getTraffic()!="GREEN"){
+                if(notFirst&& getTraffic()!="OOX"){
+                    showChangeTraffic();
+                    setLight("GREEN");
                     System.out.println("    "+ getTraffic() + "    ");
-                    time.Wait(1000);
-                    setLight("YELLOW");
-                    System.out.println("");
-                    System.out.println("    "+ getTraffic() + "    ");
-                    System.out.println("");
+                    System.out.println("\n");
                     time.Wait(1000);
                 }
                 setLight("GREEN");
@@ -51,12 +58,24 @@ public class Traffic {
                     time.Wait(200);
                 }
             }
+
             else{
                 System.out.println("주행을 종료합니다.");
                 break;
             }
             notFirst = true;
         }
+    }
+
+    public void showChangeTraffic(){
+        System.out.println("    "+ getTraffic() + "    ");
+        time.Wait(1000);
+        setLight("YELLOW");
+        System.out.println("");
+        System.out.println("    "+ getTraffic() + "    ");
+        System.out.println("");
+        time.Wait(1000);
+
     }
 
     public String getTraffic(){
@@ -67,14 +86,13 @@ public class Traffic {
         if(light == "RED"){
             this.TrafficLight = "XOO";
         }
-        if(light == "YELLOW")
+        else if(light == "YELLOW")
         {
             this.TrafficLight = "OXO";
         }
-        if(light == "GREEN")
+        else if(light == "GREEN")
         {
             this.TrafficLight = "OOX";
         }
-
     }
 }

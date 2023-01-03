@@ -20,7 +20,7 @@ public class RoadTravel {
                 System.out.print(car.getName()+"가 주행을 시작합니다.");
                 for(int i=0;i<3;i++)
                 {
-                    time.Wait(200);
+                    time.Wait(400);
                     System.out.print(".");
                 }
                 System.out.println();

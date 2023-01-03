@@ -9,7 +9,7 @@ public class MakeCar {
         data[1] = new Car("람보르기니","승용차",400,40);
         data[2] = new Car("ev6","SUV",200,20);
         data[3] = new Car("제네시스","승용차",150,10);
-        return data[index];
+        return data[index-1];
     }
     public Car makeMyCar(){
         String name,carType;
