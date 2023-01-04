@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class Traffic {
     private String TrafficLight;
-    private Wait time = new Wait();
 
     public void system(Car car){
         Scanner sc = new Scanner(System.in);
@@ -23,7 +22,7 @@ public class Traffic {
                     showChangeTraffic();
                     setLight("RED");
                     System.out.println("    "+ getTraffic() + "    ");
-                    time.Wait(1000);
+                    Wait.load(1000);
                     System.out.println("\n");
                     System.out.println("    "+getTraffic()+"              속력");
                     for(int i=car.getCurSpeed(); i >= 0 ; i-=car.getSpeedPerUnit())
@@ -33,7 +32,7 @@ public class Traffic {
                             car.setCurSpeed(0);
                         }
                         System.out.println("|    |    |          "+ car.getCurSpeed());
-                        time.Wait(200);
+                        Wait.load(200);
                     }
                     continue;
                 }
@@ -47,7 +46,7 @@ public class Traffic {
                     setLight("GREEN");
                     System.out.println("    "+ getTraffic() + "    ");
                     System.out.println("\n");
-                    time.Wait(1000);
+                    Wait.load(1000);
                 }
                 setLight("GREEN");
                 System.out.println("    "+getTraffic()+"             속력");
@@ -55,7 +54,7 @@ public class Traffic {
                 {
                     car.setCurSpeed(i);
                     System.out.println("|    |    |          "+ car.getCurSpeed());
-                    time.Wait(200);
+                    Wait.load(1000);
                 }
             }
 
@@ -69,12 +68,12 @@ public class Traffic {
 
     public void showChangeTraffic(){
         System.out.println("    "+ getTraffic() + "    ");
-        time.Wait(1000);
+        Wait.load(1000);
         setLight("YELLOW");
         System.out.println("");
         System.out.println("    "+ getTraffic() + "    ");
         System.out.println("");
-        time.Wait(1000);
+        Wait.load(1000);
 
     }
 

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class RoadTravel {
     public void Start(Car car){
-        Wait time = new Wait();
+        Wait.load(200);
         Traffic traffic = new Traffic();
         System.out.println("[옵션 선택]");
         System.out.println("1. 도로주행");
@@ -16,11 +16,11 @@ public class RoadTravel {
         Scanner sc = new Scanner(System.in);
             int input = sc.nextInt();
             if(input==1){
-                time.Wait(200);
+                Wait.load(200);
                 System.out.print(car.getName()+"가 주행을 시작합니다.");
                 for(int i=0;i<3;i++)
                 {
-                    time.Wait(400);
+                    Wait.load(400);
                     System.out.print(".");
                 }
                 System.out.println();

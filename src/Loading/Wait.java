@@ -1,11 +1,16 @@
 package Loading;
 
 public class Wait {
-    public void Wait(int time){
+
+    public static Wait node = new Wait();
+    private Wait(){}
+
+    public static void load(int i) {
         try{
-            Thread.sleep(time);
+            Thread.sleep(i);
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 }
